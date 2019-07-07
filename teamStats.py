@@ -13,6 +13,7 @@ class Stats():
         self.steals = 0
         self.turnovers = 0
         self.fouls = 0
+        self.successRate = 0.0
         
     #Fill Stats with categories needed to calculate Success Rate
     def fillValues(self, statString):
@@ -21,3 +22,16 @@ class Stats():
         self.steals = statString.find('td',{'data-stat':'stl'}).text
         self.turnovers = statString.find('td',{'data-stat':'tov'}).text
         self.fouls = statString.find('td',{'data-stat':'pf'}).text
+        
+    def determineSuccessRate(self, opponent):
+        #Successful PLays:
+        #fgm
+        #opponent fouls
+        successes = self.field_goals_made + opponent.fouls
+        #Failed Plays:
+        #fga - fgm
+        #turnovers
+        fails = (int(self.field_goals_attempted) - int(self.field_goals_made)) \
+            + int(self.turnovers)
+        self.successRate = float(successes) / float(fails)
+        
