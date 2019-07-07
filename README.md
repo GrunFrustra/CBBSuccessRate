@@ -1,2 +1,9 @@
-# CBBSuccessRate
-Calculate the success rate of College Basketball games
+Successful Plays
+Field Goals made
+Defense fouls
+
+Failed Plays
+Missed 2 Pointers
+Missed 3 Pointers
+Turnover
+Stolen Ball
