@@ -35,3 +35,13 @@ class Stats():
             + int(self.turnovers)
         self.successRate = float(successes) / float(fails)
         
+    def printValues(self):
+        print(self.name)
+        print('Field goals made: {}' .format(self.field_goals_made))
+        print('Field goals attempted: {}' .format(self.field_goals_attempted))
+        print('Steals: {}' .format(self.steals))
+        print('Turnovers: {}' .format(self.turnovers))
+        print('Fouls: {}' .format(self.fouls))
+        print('Success Rate: {0:.2f}' .format(self.successRate))
+        print('\n')
+        

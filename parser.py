@@ -12,7 +12,8 @@ import re
 import teamStats
 
 #URL leads to game data at sports-reference
-gamePage = 'https://www.sports-reference.com/cbb/boxscores/2019-04-08-21-virginia.html'
+#gamePage = 'https://www.sports-reference.com/cbb/boxscores/2019-04-08-21-virginia.html'
+gamePage = 'https://www.sports-reference.com/cbb/boxscores/2019-03-24-14-clemson.html'
 
 
 #Strip tag data away to get team names
@@ -47,11 +48,14 @@ getTeamData(bs, team1_data, team2_data)
 
 team1_data.determineSuccessRate(team2_data)
 team2_data.determineSuccessRate(team1_data)
-print(team1_data.name)
-print(team1_data.field_goals_made)
-print(team1_data.field_goals_attempted)
-print(team1_data.fouls)
-print(team1_data.steals)
-print(team1_data.turnovers)
-print("SUCCESS RATE")
-print(team1_data.successRate)
+
+team1_data.printValues()
+team2_data.printValues()
+#print(team1_data.name)
+#print(team1_data.field_goals_made)
+#print(team1_data.field_goals_attempted)
+#print(team1_data.fouls)
+#print(team1_data.steals)
+#print(team1_data.turnovers)
+#print("SUCCESS RATE")
+#print(team1_data.successRate)
