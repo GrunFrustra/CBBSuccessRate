@@ -12,7 +12,7 @@ import re
 import teamStats
 
 #URL leads to game data at sports-reference
-dayPage = 'https://www.sports-reference.com/cbb/boxscores/index.cgi?month=11&day=15&year=2018'
+dayPage = 'https://www.sports-reference.com/cbb/boxscores/index.cgi?month=11&day=17&year=2018'
 gamePage = 'https://www.sports-reference.com/cbb/boxscores/2019-03-24-14-clemson.html'
 
 
@@ -45,21 +45,24 @@ for element in boxscores:
     gamePage = 'https://www.sports-reference.com' + element.find('a')['href']
     print(gamePage)
 
-html = urlopen(gamePage)
-bs = BeautifulSoup(html, 'html.parser')
+    html = urlopen(gamePage)
+    bs = BeautifulSoup(html, 'html.parser')
 
-teams = getTeamNames(bs)
-print(teams)
+    teams = getTeamNames(bs)
+    print(teams)
+    #Skip stat retrieval if two team tables were not retrieved.
+    if len(teams) < 2:
+        continue
+    
+    team1_data = teamStats.Stats(teams[0])
+    team2_data = teamStats.Stats(teams[1])
+    getTeamData(bs, team1_data, team2_data)
 
-team1_data = teamStats.Stats(teams[0])
-team2_data = teamStats.Stats(teams[1])
-getTeamData(bs, team1_data, team2_data)
+    team1_data.determineSuccessRate(team2_data)
+    team2_data.determineSuccessRate(team1_data)
 
-team1_data.determineSuccessRate(team2_data)
-team2_data.determineSuccessRate(team1_data)
-
-team1_data.printValues()
-team2_data.printValues()
+    team1_data.printValues(team2_data)
+    team2_data.printValues(team1_data)
 #print(team1_data.name)
 #print(team1_data.field_goals_made)
 #print(team1_data.field_goals_attempted)

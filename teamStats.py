@@ -35,7 +35,7 @@ class Stats():
             + int(self.turnovers)
         self.successRate = float(successes) / float(fails)
         
-    def printValues(self):
+    def printValues(self, opponent):
         print(self.name)
         print('Field goals made: {}' .format(self.field_goals_made))
         print('Field goals attempted: {}' .format(self.field_goals_attempted))
@@ -44,4 +44,22 @@ class Stats():
         print('Fouls: {}' .format(self.fouls))
         print('Success Rate: {0:.2f}' .format(self.successRate))
         print('\n')
+        with open('./TeamStats/' + self.name + '.txt', 'a') as f:
+            f.write(self.name + '\n')
+            f.write('Field goals made: {} \n' .format(self.field_goals_made))
+            f.write('Field goals attempted: {} \n' .format(self.field_goals_attempted))
+            f.write('Steals: {} \n' .format(self.steals))
+            f.write('Turnovers: {} \n' .format(self.turnovers))
+            f.write('Fouls: {} \n' .format(self.fouls))
+            f.write('Success Rate: {0:.2f}' .format(self.successRate))
+            f.write('\n\n')
+            f.write(opponent.name + '\n')
+            f.write('Field goals made: {} \n' .format(opponent.field_goals_made))
+            f.write('Field goals attempted: {} \n' .format(opponent.field_goals_attempted))
+            f.write('Steals: {} \n' .format(opponent.steals))
+            f.write('Turnovers: {} \n' .format(opponent.turnovers))
+            f.write('Fouls: {} \n' .format(opponent.fouls))
+            f.write('Success Rate: {0:.2f}' .format(opponent.successRate))
+            f.write('\n----------------------')
+            
         
