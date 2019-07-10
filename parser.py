@@ -12,7 +12,7 @@ import re
 import teamStats
 
 #URL leads to game data at sports-reference
-#gamePage = 'https://www.sports-reference.com/cbb/boxscores/2019-04-08-21-virginia.html'
+dayPage = 'https://www.sports-reference.com/cbb/boxscores/index.cgi?month=11&day=15&year=2018'
 gamePage = 'https://www.sports-reference.com/cbb/boxscores/2019-03-24-14-clemson.html'
 
 
@@ -35,6 +35,15 @@ def getTeamData(bs, t1, t2):
     t1.fillValues(labels[0])
     t2.fillValues(labels[1])
 
+
+dayhtml = urlopen(dayPage)
+daybs = BeautifulSoup(dayhtml, 'html.parser')
+boxscores = daybs.find_all('td',{'class':'right gamelink'})
+gameUrls = []
+for element in boxscores:
+    #/cbb/boxscores/2018-11-15-19-cornell.html
+    gamePage = 'https://www.sports-reference.com' + element.find('a')['href']
+    print(gamePage)
 
 html = urlopen(gamePage)
 bs = BeautifulSoup(html, 'html.parser')
